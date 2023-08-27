@@ -12,7 +12,7 @@ public class MvcPipeline : IMiddlewarePipeline
     {
         app.UseRouting();
         app.UseAuthorization();
-        (app as WebApplication)!.MapRazorPages()
-            .RequireAuthorization();
+        (app as WebApplication)!.MapRazorPages();
+            //.RequireAuthorization();
     }
 }
