@@ -2,6 +2,9 @@ cs-identity-manager-domain/bin
 cs-identity-manager-domain/obj
 cs-identity-manager-host/bin
 cs-identity-manager-host/obj
+cs-identity-manager-host/wwwroot
+cs-identity-manager-host/node_modules
+cs-identity-manager-host/package-lock.json
 cs-identity-manager-infrastructure/bin
 cs-identity-manager-infrastructure/obj
 cs-identity-manager-presentation/bin

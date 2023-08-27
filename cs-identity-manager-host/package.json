@@ -1,0 +1,20 @@
+{
+  "name": "cs-identity-manager-assets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "author": "ternary operator",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.66.1",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.2",
+    "bulma": "^0.9.4"
+  }
+}
