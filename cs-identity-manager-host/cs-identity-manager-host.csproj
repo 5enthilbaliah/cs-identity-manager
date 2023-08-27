@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="assets" />
+      <Folder Include="browser" />
       <Folder Include="wwwroot" />
     </ItemGroup>
 
