@@ -1,31 +1,10 @@
 @charset "utf-8";
-
-// Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-
-// Set your brand colors
-$wine: #722F37;
-$milky: #FEFCFF;
-
-/* $purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB; */
+@import "base/amrita_base";
 
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif;
-// $grey-dark: $brown;
-// $grey-light: $beige-light;
-$primary: $wine;
-// $link: $pink;
-// $widescreen-enabled: false;
-// $fullhd-enabled: false;
-
-// Update some of Bulma's component variables
-$body-background-color: $milky;
-// $control-border-width: 2px;
-// $input-shadow: none;
+$primary: $amrita-wine;
+$body-background-color: $amrita-milky;
 
 $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 
