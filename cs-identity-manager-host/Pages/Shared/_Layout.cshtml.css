@@ -265,6 +265,37 @@ form.sign-in-form {
     pointer-events: all;
 }
 
+.navbar {
+    position: absolute;
+    background-color: transparent;
+}
+
+.navbar-item {
+    background-color: transparent;
+}
+
+.navbar .navbar-item i {
+    color: #fff;
+    font-size: 30px;
+    transition: 1s 0.8s ease-in-out;
+}
+
+.navbar .navbar-item svg {
+    color: #fff;
+    height: 35px;
+    width: 100px;
+    transition: 1s 0.8s ease-in-out;
+}
+
+.navbar.sign-up-mode .navbar-item i {
+    color: #722F37;
+    font-size: 30px;
+}
+
+.navbar.sign-up-mode .navbar-item svg {
+    color: #722F37;
+}
+
 @media (max-width: 870px) {
     .login-container {
         min-height: 800px;
@@ -273,7 +304,7 @@ form.sign-in-form {
 
     .signin-signup {
         width: 100%;
-        top: 95%;
+        top: 85%;
         transform: translate(-50%, -100%);
         transition: 1s 0.8s ease-in-out;
     }
@@ -281,6 +312,10 @@ form.sign-in-form {
     .signin-signup,
     .login-container.sign-up-mode .signin-signup {
         left: 50%;
+    }
+
+    .login-container.sign-up-mode .signin-signup {
+        bottom: 40%;
     }
 
     .panels-container {
