@@ -9,7 +9,8 @@ export default defineConfig(({ command }) => {
                 outDir: 'wwwroot',
                 rollupOptions: {
                     input: {
-                        main: resolve(__dirname, 'browser/main.js')
+                        main: resolve(__dirname, 'browser/main.js'),
+                        login: resolve(__dirname, 'browser/login.js')
                     },
                     output: {
                         entryFileNames: '[name].js',
