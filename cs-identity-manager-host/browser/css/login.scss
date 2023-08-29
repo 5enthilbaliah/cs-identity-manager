@@ -235,26 +235,60 @@ form {
 }
 
 
-@media (max-width: 870px) {
+@media (max-width: $amrita-tablet) {
   .login-container {
     min-height: 800px;
     height: 100vh;
-  }
 
-  .signin-signup {
-    width: 100%;
-    top: 85%;
-    transform: translate(-50%, -100%);
-    transition: 1s 0.8s ease-in-out;
-  }
+    .signin-signup {
+      width: 100%;
+      top: 85%;
+      transform: translate(-50%, -100%);
+      transition: 1s 0.8s ease-in-out;
+      left: 50%;
+    }
 
-  .signin-signup,
-  .login-container.sign-up-mode .signin-signup {
-    left: 50%;
-  }
+    &:before {
+      width: 1500px;
+      height: 1500px;
+      transform: translateX(-50%);
+      left: 30%;
+      bottom: 68%;
+      right: initial;
+      top: initial;
+      transition: 2s ease-in-out;
+    }
 
-  .login-container.sign-up-mode .signin-signup {
-    bottom: 40%;
+    &.sign-up-mode {
+      .signin-signup {
+        left: 50%;
+        bottom: 40%;
+        top: 5%;
+        transform: translate(-50%, 0);
+      }
+
+      &:before {
+        transform: translate(-50%, 100%);
+        bottom: 32%;
+        right: initial;
+      }
+
+      .left-panel {
+
+        .image,
+        .content {
+          transform: translateY(-300px);
+        }
+      }
+
+      .right-panel {
+
+        .image,
+        .content {
+          transform: translateY(0px);
+        }
+      }
+    }
   }
 
   .panels-container {
@@ -268,14 +302,21 @@ form {
     align-items: center;
     padding: 2.5rem 8%;
     grid-column: 1 / 2;
-  }
 
-  .right-panel {
-    grid-row: 3 / 4;
-  }
+    .content {
+      padding-right: 15%;
+      transition: transform 0.9s ease-in-out;
+      transition-delay: 0.8s;
+    }
 
-  .left-panel {
-    grid-row: 1 / 2;
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+      padding: 0.5rem 0;
+    }
   }
 
   .image {
@@ -284,66 +325,21 @@ form {
     transition-delay: 0.6s;
   }
 
-  .flex-panel .content {
-    padding-right: 15%;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.8s;
+  .left-panel {
+    grid-row: 1 / 2;
   }
 
-  .flex-panel h3 {
-    font-size: 1.2rem;
-  }
+  .right-panel {
+    grid-row: 3 / 4;
 
-  .flex-panel p {
-    font-size: 0.7rem;
-    padding: 0.5rem 0;
-  }
-
-  .btn.transparent {
-    width: 110px;
-    height: 35px;
-    font-size: 0.7rem;
-  }
-
-  .login-container:before {
-    width: 1500px;
-    height: 1500px;
-    transform: translateX(-50%);
-    left: 30%;
-    bottom: 68%;
-    right: initial;
-    top: initial;
-    transition: 2s ease-in-out;
-  }
-
-  .login-container.sign-up-mode:before {
-    transform: translate(-50%, 100%);
-    bottom: 32%;
-    right: initial;
-  }
-
-  .login-container.sign-up-mode .left-panel .image,
-  .login-container.sign-up-mode .left-panel .content {
-    transform: translateY(-300px);
-  }
-
-  .login-container.sign-up-mode .right-panel .image,
-  .login-container.sign-up-mode .right-panel .content {
-    transform: translateY(0px);
-  }
-
-  .right-panel .image,
-  .right-panel .content {
-    transform: translateY(300px);
-  }
-
-  .login-container.sign-up-mode .signin-signup {
-    top: 5%;
-    transform: translate(-50%, 0);
+    .image,
+    .content {
+      transform: translateY(300px);
+    }
   }
 }
 
-@media (max-width: 570px) {
+@media (max-width: $amrita-mobile) {
   form {
     padding: 0 1.5rem;
   }
@@ -358,15 +354,17 @@ form {
 
   .login-container {
     padding: 1.5rem;
-  }
 
-  .login-container:before {
-    bottom: 72%;
-    left: 50%;
-  }
+    &:before {
+      bottom: 72%;
+      left: 50%;
+    }
 
-  .login-container.sign-up-mode:before {
-    bottom: 28%;
-    left: 50%;
+    &.sign-up-mode {
+      &:before {
+        bottom: 28%;
+        left: 50%;
+      }
+    }
   }
 }
