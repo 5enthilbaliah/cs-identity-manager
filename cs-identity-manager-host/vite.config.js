@@ -1,7 +1,7 @@
-﻿import { defineConfig } from 'vite'
-import { resolve } from 'path'
+﻿import {defineConfig} from 'vite'
+import {resolve} from 'path'
 
-export default defineConfig(({ command }) => {
+export default defineConfig(({command}) => {
 
     if (command === "build") {
         return {
@@ -30,7 +30,6 @@ export default defineConfig(({ command }) => {
         }
 
     } else {
-        return {
-        }
+        return {}
     }
 })

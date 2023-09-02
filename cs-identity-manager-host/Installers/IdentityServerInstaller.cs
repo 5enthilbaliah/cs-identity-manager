@@ -22,25 +22,27 @@ public class IdentityServerInstaller : IServiceInstaller
         {
             options.UseSqlServer(connectionSting);
         });
-        services.AddIdentity<IdentityUser, IdentityRole>()
-            .AddEntityFrameworkStores<AmritaTribeApplicationDbContext>();
+        services.AddIdentity<AmritaUser, IdentityRole>()
+            .AddEntityFrameworkStores<AmritaTribeApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
         services.AddIdentityServer(options =>
-        {
-            options.Events.RaiseErrorEvents = true;
-            options.Events.RaiseInformationEvents = true;
-            options.Events.RaiseFailureEvents = true;
-            options.Events.RaiseSuccessEvents = true;
+            {
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
 
-            options.EmitStaticAudienceClaim = true;
-        }).AddConfigurationStore<AmritaTribeConfigurationDbContext>(options =>
-        {
-            options.Setup();
-            options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
-        }).AddOperationalStore<AmritaTribeOperationDbContext>(options =>
-        {
-            options.Setup();
-            options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
-        }).AddAspNetIdentity<IdentityUser>();
+                options.EmitStaticAudienceClaim = true;
+            }).AddConfigurationStore<AmritaTribeConfigurationDbContext>(options =>
+            {
+                options.Setup();
+                options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
+            }).AddOperationalStore<AmritaTribeOperationDbContext>(options =>
+            {
+                options.Setup();
+                options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
+            }).AddAspNetIdentity<AmritaUser>()
+            .AddDeveloperSigningCredential();
     }
 }

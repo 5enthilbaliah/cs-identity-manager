@@ -11,3 +11,8 @@
 ```shell
 git clone https://github.com/5enthilbaliah/cs-identity-manager.git
 ```
+
+## Seed Identity Database
+- Choose 'cs_identity_manager_host_seed' from launch settings
+- Run the application to load the identity server
+- You can update the super admin password by updating the launch settings 'commandLineArgs'

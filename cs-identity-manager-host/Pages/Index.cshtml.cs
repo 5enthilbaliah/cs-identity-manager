@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿namespace Amrita.IdentityManager.Host.Pages;
 
-namespace Amrita.IdentityManager.Host.Pages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 public class IndexModel : PageModel
 {
     public void OnGet()
     {
-        
     }
 }
