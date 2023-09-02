@@ -1,12 +1,13 @@
 ﻿namespace Amrita.IdentityManager.Infrastructure.Persistence.Specifications.AspNet;
 
-using Microsoft.AspNetCore.Identity;
+using Domain;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class IdentityUserSpecifications : IEntityTypeConfiguration<IdentityUser>
+public class AmritaUserSpecifications : IEntityTypeConfiguration<AmritaUser>
 {
-    public void Configure(EntityTypeBuilder<IdentityUser> builder)
+    public void Configure(EntityTypeBuilder<AmritaUser> builder)
     {
         builder.ToTable("user", "asp_net");
         builder.Property(user => user.Id)
@@ -39,5 +40,13 @@ public class IdentityUserSpecifications : IEntityTypeConfiguration<IdentityUser>
             .HasColumnName("lockout_enabled");
         builder.Property(user => user.AccessFailedCount)
             .HasColumnName("access_failed_count");
+        builder.Property(user => user.FullName)
+            .HasColumnName("full_name");
+        builder.Property(user => user.ProfilePictureUrl)
+            .HasColumnName("profile_picture_url")
+            .HasMaxLength(512)
+            .HasColumnType("nvarchar(512)");
+        builder.Property(user => user.IsInternal)
+            .HasColumnName("is_internal");
     }
 }

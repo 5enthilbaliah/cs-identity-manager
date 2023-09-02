@@ -1,12 +1,14 @@
 ﻿namespace Amrita.IdentityManager.Infrastructure.Persistence;
 
+using Domain;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 using Specifications.AspNet;
 
-public class AmritaTribeApplicationDbContext : IdentityDbContext
+public class AmritaTribeApplicationDbContext : IdentityDbContext<AmritaUser>
 {
     public AmritaTribeApplicationDbContext(DbContextOptions<AmritaTribeApplicationDbContext> options)
         : base(options)
@@ -18,8 +20,8 @@ public class AmritaTribeApplicationDbContext : IdentityDbContext
         base.OnModelCreating(modelBuilder);
         new IdentityRoleSpecifications()
             .Configure(modelBuilder.Entity<IdentityRole>());
-        new IdentityUserSpecifications()
-            .Configure(modelBuilder.Entity<IdentityUser>());
+        new AmritaUserSpecifications()
+            .Configure(modelBuilder.Entity<AmritaUser>());
         new IdentityUserRoleSpecifications()
             .Configure(modelBuilder.Entity<IdentityUserRole<string>>());
         new IdentityUserClaimSpecifications()
