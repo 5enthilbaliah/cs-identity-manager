@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\cs-identity-manager-application\cs-identity-manager-application.csproj" />
         <ProjectReference Include="..\cs-identity-manager-infrastructure\cs-identity-manager-infrastructure.csproj"/>
     </ItemGroup>
 
@@ -18,6 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Pages\Account\Login\" />
+        <Folder Include="Pages\Account\Logout\" />
         <Folder Include="wwwroot"/>
     </ItemGroup>
 

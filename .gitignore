@@ -1,5 +1,7 @@
 cs-identity-manager-domain/bin
 cs-identity-manager-domain/obj
+cs-identity-manager-application/bin
+cs-identity-manager-application/obj
 cs-identity-manager-host/bin
 cs-identity-manager-host/obj
 cs-identity-manager-host/wwwroot
