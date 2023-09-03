@@ -3,6 +3,7 @@
 using Domain;
 
 using Duende.IdentityServer;
+using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Stores;
 
@@ -75,13 +76,67 @@ public class LoginPageModel : PageModel
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(SignInInfo.ReturnUrl);
             var user = await _signInManager.UserManager.FindByNameAsync(SignInInfo.UserName);
-            if (user is not null && (await _signInManager.CheckPasswordSignInAsync(user, SignInInfo.Password, false))
+            if (user is not null && await _signInManager.CheckPasswordSignInAsync(user, SignInInfo.Password, false)
                 == SignInResult.Success)
             {
-                ;
+                await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName,
+                    clientId: context?.Client.ClientId));
+
+                // only set explicit expiration here if user chooses "remember me". 
+                // otherwise we rely upon expiration configured in cookie middleware.
+                AuthenticationProperties props = null;
+                if (LoginOptions.AllowRememberLogin && SignInInfo.RememberLogin)
+                {
+                    props = new AuthenticationProperties
+                    {
+                        IsPersistent = true,
+                        ExpiresUtc = DateTimeOffset.UtcNow.Add(LoginOptions.RememberMeLoginDuration)
+                    };
+                }
+
+                // issue authentication cookie with subject ID and username
+                var issuer = new IdentityServerUser(user.Id)
+                {
+                    DisplayName = user.UserName
+                };
+
+                await HttpContext.SignInAsync(issuer, props);
+                
+                if (context != null)
+                {
+                    if (context.IsNativeClient())
+                    {
+                        // The client is native, so this change in how to
+                        // return the response is for better UX for the end user.
+                        return this.LoadingPage(SignInInfo.ReturnUrl);
+                    }
+
+                    // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
+                    return Redirect(SignInInfo.ReturnUrl);
+                }
+                
+                // request for a local page
+                if (Url.IsLocalUrl(SignInInfo.ReturnUrl))
+                {
+                    return Redirect(SignInInfo.ReturnUrl);
+                }
+                else if (string.IsNullOrEmpty(SignInInfo.ReturnUrl))
+                {
+                    return Redirect("~/");
+                }
+                else
+                {
+                    // user might have clicked on a malicious link - should be logged
+                    throw new Exception("invalid return URL");
+                }
             }
+            
+            await _events.RaiseAsync(new UserLoginFailureEvent(SignInInfo.UserName, "invalid credentials", clientId:context?.Client.ClientId));
+            ModelState.AddModelError("SignInInfo.Password", LoginOptions.InvalidCredentialsErrorMessage);
         }
 
+        // something went wrong, show form with error
+        await BuildModelAsync(SignInInfo.ReturnUrl);
         IsSignInSelected = true;
         return Page();
     }
@@ -116,7 +171,7 @@ public class LoginPageModel : PageModel
             {
                 View.ExternalProviders = new[]
                 {
-                    new LoginViewModel.ExternalProvider { AuthenticationScheme = context.IdP ?? "Bearer"}
+                    new LoginViewModel.ExternalProvider { AuthenticationScheme = context.IdP ?? "Bearer" }
                 };
             }
 
