@@ -73,7 +73,7 @@ public class LoginPageModel : PageModel
         {
             await Task.CompletedTask;
         }
-
+        
         return Page();
     }
 

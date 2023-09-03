@@ -9,7 +9,7 @@
     ViewData["Title"] = "Sign in & sign up Form";
 }
 
-<div class="login-container">
+<div class="login-container @(Model.IsSignInSelected ? "" : "sign-up-mode")">
     <input type="hidden" asp-for="IsSignInSelected"/>
     <div class="forms-container">
         <div class="signin-signup">
