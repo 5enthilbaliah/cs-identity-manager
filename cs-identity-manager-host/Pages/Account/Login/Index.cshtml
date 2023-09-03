@@ -10,9 +10,10 @@
 }
 
 <div class="login-container">
+    <input type="hidden" asp-for="IsSignInSelected"/>
     <div class="forms-container">
         <div class="signin-signup">
-            <partial name="_SignIn" for="SignInInfo" />
+            <partial name="_SignIn" for="SignInInfo"/>
 
             <partial name="_SignUp" for="SignUpInfo"/>
         </div>

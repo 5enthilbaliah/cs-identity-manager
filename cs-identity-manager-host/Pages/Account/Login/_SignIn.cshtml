@@ -5,23 +5,24 @@
     <h2 class="title">Sign In</h2>
     <input type="hidden" asp-for="ReturnUrl" />
     
-    <div class="field">
+    <div class="field has-text-centered">
         <div class="control has-icons-left">
             <input class="input" type="text" asp-for="UserName" placeholder="Username">
             <span class="icon is-small is-left">
                 <i class="fa-solid fa-clipboard-user"></i>
             </span>
         </div>
-        @* <span asp-validation-for="UserName"></span> *@
+        <span class="has-text-danger" asp-validation-for="UserName"></span>
     </div>
 
-    <div class="field">
+    <div class="field has-text-centered">
         <div class="control has-icons-left">
             <input class="input" type="password" asp-for="Password" placeholder="Password">
             <span class="icon is-small is-left">
                 <i class="fa-solid fa-lock"></i>
             </span>
         </div>
+        <span class="has-text-danger" asp-validation-for="Password"></span>
     </div>
     
     <div class="field">

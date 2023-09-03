@@ -39,8 +39,11 @@ public class LoginPageModel : PageModel
 
     [BindProperty] public SignUpModel? SignUpInfo { get; set; }
 
+    [BindProperty] public bool IsSignInSelected { get; set; }
+
     public async Task<IActionResult> OnGet(string returnUrl)
     {
+        IsSignInSelected = true;
         await BuildModelAsync(returnUrl);
         return Page();
     }
@@ -59,6 +62,7 @@ public class LoginPageModel : PageModel
             await Task.CompletedTask;
         }
 
+        IsSignInSelected = true;
         return Page();
     }
 
