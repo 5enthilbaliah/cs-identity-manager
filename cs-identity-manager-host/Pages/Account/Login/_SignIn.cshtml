@@ -1,7 +1,7 @@
 ﻿@model SignInModel
 
 
-<form asp-page="/Account/Login" class="sign-in-form">
+<form asp-page-handler="signIn" method="post" class="sign-in-form">
     <h2 class="title">Sign In</h2>
     <input type="hidden" asp-for="ReturnUrl" />
     
@@ -12,6 +12,7 @@
                 <i class="fa-solid fa-clipboard-user"></i>
             </span>
         </div>
+        @* <span asp-validation-for="UserName"></span> *@
     </div>
 
     <div class="field">
