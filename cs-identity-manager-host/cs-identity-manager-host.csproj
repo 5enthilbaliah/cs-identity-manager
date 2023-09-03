@@ -19,7 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Pages\Account\Login\" />
         <Folder Include="Pages\Account\Logout\" />
         <Folder Include="wwwroot"/>
     </ItemGroup>

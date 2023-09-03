@@ -12,3 +12,14 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 @import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "@fortawesome/fontawesome-free/scss/brands.scss";
 @import "@fortawesome/fontawesome-free/scss/solid.scss";
+
+.navbar {
+  .navbar-item {
+    svg {
+      color: $amrita-white;
+      height: 50px;
+      width: 170px;
+      transition: 1s 0.8s ease-in-out;
+    }
+  }
+}

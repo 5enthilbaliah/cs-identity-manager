@@ -8,16 +8,10 @@
   .navbar-item {
     background-color: transparent;
 
-    i {
-      color: $amrita-white;
-      font-size: 30px;
-      transition: 1s 0.8s ease-in-out;
-    }
-
     svg {
       color: $amrita-white;
-      height: 35px;
-      width: 100px;
+      height: 60px;
+      width: 170px;
       transition: 1s 0.8s ease-in-out;
     }
   }

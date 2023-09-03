@@ -12,6 +12,10 @@ public class MvcPipeline : IMiddlewarePipeline
     {
         app.UseRouting();
         app.UseAuthorization();
+        app.Use(async (context, next) => {
+            context.Response.Headers.Add("Content-Security-Policy", "style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
+            await next();
+        });
         (app as WebApplication)!.MapRazorPages();
         //.RequireAuthorization();
     }
