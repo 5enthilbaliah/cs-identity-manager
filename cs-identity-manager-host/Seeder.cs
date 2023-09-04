@@ -4,7 +4,6 @@ using System.Security.Claims;
 
 using Domain;
 
-using Duende.IdentityServer.EntityFramework.DbContexts;
 using Duende.IdentityServer.EntityFramework.Mappers;
 
 using IdentityModel;
@@ -108,7 +107,9 @@ public class Seeder
             result = userMgr.AddClaimsAsync(superAdmin, new Claim[]
             {
                 new Claim(JwtClaimTypes.Name, "Super administrator"),
-                new Claim(JwtClaimTypes.GivenName, "Super administrator"),
+                new Claim(JwtClaimTypes.GivenName, "NA"),
+                new Claim(JwtClaimTypes.FamilyName, "NA"),
+                new Claim(JwtClaimTypes.Picture, "NA"),
                 new Claim(JwtClaimTypes.Role, SeedData.SuperAdminRole)
             }).Result;
             

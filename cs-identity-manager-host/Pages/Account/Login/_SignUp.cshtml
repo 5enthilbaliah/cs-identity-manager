@@ -35,7 +35,7 @@
 
     <div class="field has-text-centered">
         <div class="control has-icons-left">
-            <input class="input" type="password" asp-for="Password" placeholder="Password">
+            <input class="input" type="password" asp-for="Password" placeholder="Password" autocomplete="off">
             <span class="icon is-small is-left">
                 <i class="fa-solid fa-lock"></i>
             </span>
@@ -43,10 +43,12 @@
         <span class="has-text-danger" asp-validation-for="Password"></span>
     </div>
 
-    <button class="button is-primary">
-        <span class="icon">
-            <i class="fa-solid fa-circle-arrow-right"></i>
-        </span>
-        <span>REGISTER</span>
-    </button>
+    <div class="field">
+        <button class="button is-primary">
+            <span class="icon">
+                <i class="fa-solid fa-circle-arrow-right"></i>
+            </span>
+            <span>REGISTER</span>
+        </button>
+    </div>
 </form>

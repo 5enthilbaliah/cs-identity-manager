@@ -3,8 +3,8 @@
 
 <form asp-page-handler="signIn" method="post" class="sign-in-form">
     <h2 class="title">Sign In</h2>
-    <input type="hidden" asp-for="ReturnUrl" />
-    
+    <input type="hidden" asp-for="ReturnUrl"/>
+
     <div class="field has-text-centered">
         <div class="control has-icons-left">
             <input class="input" type="text" asp-for="UserName" placeholder="Username">
@@ -17,25 +17,28 @@
 
     <div class="field has-text-centered">
         <div class="control has-icons-left">
-            <input class="input" type="password" asp-for="Password" placeholder="Password">
+            <input class="input" type="password" asp-for="Password" placeholder="Password" autocomplete="off">
             <span class="icon is-small is-left">
                 <i class="fa-solid fa-lock"></i>
             </span>
         </div>
         <span class="has-text-danger" asp-validation-for="Password"></span>
     </div>
-    
+
     <div class="field">
         <input asp-for="RememberLogin" type="checkbox" class="switch is-rounded">
         <label asp-for="RememberLogin">Remember my login</label>
     </div>
 
-    <button class="button is-primary">
-        <span class="icon">
-            <i class="fa-solid fa-right-to-bracket"></i>
-        </span>
-        <span>LOGIN</span>
-    </button>
+    <div class="field">
+        <button class="button is-primary">
+            <span class="icon">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </span>
+            <span>LOGIN</span>
+        </button>
+    </div>
+
 
     <p class="social-text">Or Sign in with social platform</p>
     <div class="social-media">

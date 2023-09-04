@@ -3,7 +3,7 @@
 using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 
-using Microsoft.AspNetCore.Identity;
+using IdentityModel;
 
 public static class SeedData
 {
@@ -11,20 +11,30 @@ public static class SeedData
         new[]
         {
             new IdentityResources.OpenId(), new IdentityResources.Profile(), new IdentityResources.Email(),
-            new IdentityResource { Name = "profile-picture", UserClaims = new List<string> { "profile-picture" } },
-            new IdentityResource { Name = "role", UserClaims = new List<string> { "role" } }
+            new IdentityResource
+            {
+                Name = "roles",
+                DisplayName = "Role information",
+                Description = "Your user role information",
+                UserClaims = new[] { JwtClaimTypes.Role }
+            }
         };
 
     public static IEnumerable<ApiScope> ApiScopes =>
-        new[] { new ApiScope("test-api.read"), new ApiScope("test-api.write") };
+        new[]
+        {
+            new ApiScope("test-api.read", "Test api read"), 
+            new ApiScope("test-api.write", "Test api write")
+        };
 
     public static IEnumerable<ApiResource> ApiResources => new[]
     {
         new ApiResource("test-api")
         {
+            Description = "Test api resource",
             Scopes = new List<string> { "test-api.read", "test-api.write" },
             ApiSecrets = new List<Secret> { new("Scope$ecret".Sha256()) },
-            UserClaims = new List<string> { "role" }
+            UserClaims = new List<string> { JwtClaimTypes.Role }
         }
     };
 
@@ -56,7 +66,7 @@ public static class SeedData
                     "test-api.read",
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Email,
-                    IdentityServerConstants.StandardScopes.OpenId
+                    IdentityServerConstants.StandardScopes.Profile
                 },
                 RequirePkce = true,
                 RequireConsent = true,
