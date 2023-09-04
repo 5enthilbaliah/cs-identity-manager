@@ -54,9 +54,9 @@ public class LoginPageModel : PageModel
     public async Task<IActionResult> OnGet(string returnUrl)
     {
         IsSignInSelected = true;
-        (var signIn, var view) = await _loginService.BindModelsAsync(returnUrl);
+        var (signIn, view) = await _loginService.BindModelsAsync(returnUrl);
         SignInInfo = signIn;
-        
+        View = view;
 
         if (View.IsExternalLoginOnly)
         {
@@ -94,7 +94,10 @@ public class LoginPageModel : PageModel
         }
 
         // something went wrong, show form with error
-        await _loginService.BindModelsAsync(SignInInfo.ReturnUrl);
+        var (signIn, view) =await _loginService.BindModelsAsync(SignInInfo.ReturnUrl);
+        SignInInfo = signIn;
+        View = view;
+        
         IsSignInSelected = true;
         return Page();
     }

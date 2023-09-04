@@ -34,7 +34,7 @@ public class LoginService : ILoginService
         _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
     }
 
-    public async Task<(SignInModel, LoginViewModel?)> BindModelsAsync(string returnUrl)
+    public async Task<(SignInModel, LoginViewModel)> BindModelsAsync(string returnUrl)
     {
         var signIn = new SignInModel { ReturnUrl = returnUrl };
         var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
@@ -85,7 +85,12 @@ public class LoginService : ILoginService
             }
         }
         
-        return (signIn, default);
+        return (signIn, new LoginViewModel
+        {
+            AllowRememberLogin = LoginOptions.AllowRememberLogin,
+            EnableLocalLogin = allowLocal && LoginOptions.AllowLocalLogin,
+            ExternalProviders = providers.ToArray()
+        });
     }
 
     public async Task<LoginResponseModel> SignInAsync(SignInModel signIn, Func<string, bool> localUrlCheck)

@@ -44,8 +44,8 @@ public class IdentityServerInstaller : IServiceInstaller
         {
             options.Setup();
             options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
-        }).AddAspNetIdentity<AmritaUser>();
-        //.AddDeveloperSigningCredential()
-        //.AddProfileService<ProfileService>();
+        }).AddAspNetIdentity<AmritaUser>()
+        .AddDeveloperSigningCredential()
+        .AddProfileService<ProfileService>();
     }
 }

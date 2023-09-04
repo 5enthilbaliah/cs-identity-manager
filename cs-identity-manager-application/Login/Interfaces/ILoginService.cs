@@ -4,6 +4,6 @@ using Models;
 
 public interface ILoginService
 {
-    Task<(SignInModel, LoginViewModel?)> BindModelsAsync(string returnUrl);
+    Task<(SignInModel, LoginViewModel)> BindModelsAsync(string returnUrl);
     Task<LoginResponseModel> SignInAsync(SignInModel signIn, Func<string, bool> localUrlCheck);
 }
