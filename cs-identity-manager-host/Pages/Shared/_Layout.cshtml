@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Duende.IdentityServer.Extensions
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -9,6 +10,13 @@
     @await RenderSectionAsync("Styles", false)
 </head>
 <body>
+@{
+    string name = null;
+    if (!true.Equals(ViewData["signed-out"]))
+    {
+        name = Context.User?.GetDisplayName();
+    }
+}
 <nav class="navbar is-primary">
     <div class="navbar-brand">
         <a class="navbar-item" href="https://app.amtita.net">
@@ -23,13 +31,20 @@
                 <path id="Layer copy 3" fill="currentcolor" d="m716.5 44.4c0.7 0 1.2 0.6 1.2 1.3v2.4l1.2-1.2c0.5-0.5 1.3-0.5 1.8 0 0.5 0.5 0.5 1.2 0 1.7l-3 3v3.9l3.5-1.9 1-4.1c0.2-0.6 0.9-1 1.6-0.8 0.6 0.1 1 0.8 0.8 1.5l-0.4 1.6 1.9-1.1c0.6-0.4 1.4-0.2 1.7 0.4 0.4 0.6 0.2 1.4-0.4 1.7l-2 1.1 1.7 0.5c0.6 0.2 1 0.8 0.9 1.5-0.2 0.7-0.9 1.1-1.6 0.9l-4-1.1-3.4 2 3.4 2 4-1.1c0.7-0.2 1.4 0.2 1.6 0.9 0.1 0.6-0.3 1.3-0.9 1.5l-1.7 0.4 2 1.1c0.6 0.4 0.8 1.1 0.4 1.7-0.3 0.6-1.1 0.8-1.7 0.5l-1.9-1.1 0.4 1.6c0.2 0.7-0.2 1.3-0.8 1.5-0.7 0.2-1.4-0.2-1.6-0.9l-1-4-3.5-2v4l3 2.9c0.5 0.5 0.5 1.3 0 1.8-0.5 0.5-1.3 0.5-1.8 0l-1.2-1.2v2.4c0 0.7-0.5 1.2-1.2 1.2-0.7 0-1.2-0.5-1.2-1.2v-2.4l-1.2 1.2c-0.5 0.5-1.3 0.5-1.8 0-0.5-0.5-0.5-1.3 0-1.8l3-2.9v-4l-3.5 2-1 4c-0.2 0.7-0.9 1.1-1.6 0.9-0.6-0.2-1-0.8-0.8-1.5l0.4-1.6-1.9 1.1c-0.6 0.3-1.4 0.1-1.7-0.5-0.4-0.6-0.2-1.3 0.4-1.7l2-1.1-1.7-0.4c-0.6-0.2-1-0.9-0.9-1.5 0.2-0.7 0.9-1.1 1.6-0.9l4 1.1 3.4-2-3.4-2-4 1.1c-0.7 0.2-1.4-0.2-1.6-0.9-0.1-0.7 0.3-1.3 0.9-1.5l1.7-0.5-2-1.1c-0.6-0.3-0.8-1.1-0.4-1.7 0.3-0.6 1.1-0.8 1.7-0.4l1.9 1.1-0.4-1.6c-0.2-0.7 0.2-1.4 0.8-1.6 0.7-0.1 1.4 0.3 1.6 0.9l1 4 3.5 2v-3.9l-3-3c-0.5-0.5-0.5-1.2 0-1.7 0.5-0.5 1.3-0.5 1.8 0l1.2 1.2v-2.4c0-0.7 0.5-1.3 1.2-1.3z"/>
             </svg>
         </a>
-
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
     </div>
+    @if (!string.IsNullOrWhiteSpace(name))
+    {
+        <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-capitalized">
+                    @name
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" asp-page="/Account/Logout/Index">Logout</a>
+                </div>
+            </div>
+        </div>
+    }
 </nav>
 
 @RenderBody()
