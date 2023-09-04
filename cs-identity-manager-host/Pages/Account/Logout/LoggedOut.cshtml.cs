@@ -4,6 +4,10 @@ namespace Amrita.IdentityManager.Host.Pages.Account.Logout;
 
 using Duende.IdentityServer.Services;
 
+using Microsoft.AspNetCore.Authorization;
+
+[SecurityHeaders]
+[AllowAnonymous]
 public class LoggedOutModel : PageModel
 {
     private readonly IIdentityServerInteractionService _interactionService;

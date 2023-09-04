@@ -1,24 +1,27 @@
 ﻿@page
 @model LoggedOutModel
 
-<div class="logged-out-page">
-    <h1>
-        Logout
-        <small>You are now logged out</small>
-    </h1>
 
-    @if (Model.View.PostLogoutRedirectUri != null)
-    {
-        <div>
-            Click <a class="PostLogoutRedirectUri" href="@Model.View.PostLogoutRedirectUri">here</a> to return to the
-            <span>@Model.View.ClientName</span> application.
-        </div>
-    }
+<div class="container is-fluid">
+    <section class="section is-medium has-text-centered">
+        <h1 class="title">Logout</h1>
+        <h2 class="subtitle">
+            You are now logged out
+        </h2>
 
-    @if (Model.View.SignOutIframeUrl != null)
-    {
-        <iframe width="0" height="0" class="signout" src="@Model.View.SignOutIframeUrl"></iframe>
-    }
+        @if (Model.View.PostLogoutRedirectUri != null)
+        {
+            <div>
+                Click <a class="PostLogoutRedirectUri" href="@Model.View.PostLogoutRedirectUri">here</a> to return to the
+                <span>@Model.View.ClientName</span> application.
+            </div>
+        }
+
+        @if (Model.View.SignOutIframeUrl != null)
+        {
+            <iframe width="0" height="0" class="signout" src="@Model.View.SignOutIframeUrl"></iframe>
+        }
+    </section>
 </div>
 
 @section scripts
