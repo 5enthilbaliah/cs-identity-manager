@@ -112,7 +112,6 @@ public class Seeder
                 new Claim(JwtClaimTypes.Picture, "NA"),
                 new Claim(JwtClaimTypes.Role, SeedData.SuperAdminRole)
             }).Result;
-            
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
