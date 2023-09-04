@@ -16,7 +16,7 @@ public class MvcPipeline : IMiddlewarePipeline
             context.Response.Headers.Add("Content-Security-Policy", "style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
             await next();
         });
-        (app as WebApplication)!.MapRazorPages();
-        //.RequireAuthorization();
+        (app as WebApplication)!.MapRazorPages()
+        .RequireAuthorization();
     }
 }

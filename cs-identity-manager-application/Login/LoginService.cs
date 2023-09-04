@@ -97,7 +97,7 @@ public class LoginService : ILoginService
     {
         var context = await _interaction.GetAuthorizationContextAsync(signIn.ReturnUrl);
         var signInResult = await _signInManager.PasswordSignInAsync(signIn.UserName, signIn.Password,
-            signIn.RememberLogin, true);
+            signIn.RememberLogin, false);
 
         if (signInResult.Succeeded)
         {

@@ -17,5 +17,6 @@ public class ApplicationInstaller : IServiceInstaller
     {
         services.AddScoped<IProfileService, ProfileService>();
         services.AddScoped<ILoginService, LoginService>();
+        services.AddScoped<IRegistrationService, RegistrationService>();
     }
 }

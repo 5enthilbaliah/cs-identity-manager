@@ -14,17 +14,15 @@ using Microsoft.AspNetCore.Identity;
 
 public class ProfileService : IProfileService
 {
-    private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IUserClaimsPrincipalFactory<AmritaUser> _userClaimsPrincipalFactory;
     private readonly UserManager<AmritaUser> _userManager;
 
     public ProfileService(IUserClaimsPrincipalFactory<AmritaUser> userClaimsPrincipalFactory,
-        UserManager<AmritaUser> userManager, RoleManager<IdentityRole> roleManager)
+        UserManager<AmritaUser> userManager)
     {
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory ??
                                       throw new ArgumentNullException(nameof(userClaimsPrincipalFactory));
         _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-        _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
     }
 
 

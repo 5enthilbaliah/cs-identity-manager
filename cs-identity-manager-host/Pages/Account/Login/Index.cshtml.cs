@@ -13,12 +13,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 public class LoginPageModel : PageModel
 {
     private readonly ILoginService _loginService;
+    private readonly IRegistrationService _registrationService;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    public LoginPageModel(ILoginService loginService)
+    public LoginPageModel(ILoginService loginService, IRegistrationService registrationService)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
-        _loginService = loginService;
+        _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
+        _registrationService = registrationService ?? throw new ArgumentNullException(nameof(registrationService));
     }
 
     public LoginViewModel View { get; set; }
@@ -33,6 +35,7 @@ public class LoginPageModel : PageModel
         IsSignInSelected = true;
         var (signIn, view) = await _loginService.BindModelsAsync(returnUrl);
         SignInInfo = signIn;
+        SignUpInfo = new SignUpModel { ReturnUrl = returnUrl };
         View = view;
 
         if (View.IsExternalLoginOnly)
@@ -84,9 +87,23 @@ public class LoginPageModel : PageModel
     public async Task<IActionResult> OnPostSignUp()
     {
         ModelState.RemoveMany("UserName", "Password");
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            await Task.CompletedTask;
+            return Page();
+        }
+
+        var registrationResponse = await _registrationService.RegisterCustomerAsync(SignUpInfo,
+            returnUrl => Url.IsLocalUrl(returnUrl));
+            
+        if (registrationResponse.LoginResponseType == LoginResponseType.Redirect)
+        {
+            return Redirect(registrationResponse.RedirectUrl!);
+        }
+
+        if (registrationResponse.LoginResponseType == LoginResponseType.Failed)
+        {
+            var firstError = registrationResponse.Errors.First();
+            ModelState.AddModelError($"SignUpInfo.{firstError.Key}", firstError.Value);
         }
 
         return Page();
