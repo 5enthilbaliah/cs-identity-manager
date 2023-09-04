@@ -1,5 +1,7 @@
 ﻿namespace Amrita.IdentityManager.Host.Installers;
 
+using Application;
+
 using Domain;
 
 using Enums;
@@ -27,22 +29,23 @@ public class IdentityServerInstaller : IServiceInstaller
             .AddDefaultTokenProviders();
 
         services.AddIdentityServer(options =>
-            {
-                options.Events.RaiseErrorEvents = true;
-                options.Events.RaiseInformationEvents = true;
-                options.Events.RaiseFailureEvents = true;
-                options.Events.RaiseSuccessEvents = true;
+        {
+            options.Events.RaiseErrorEvents = true;
+            options.Events.RaiseInformationEvents = true;
+            options.Events.RaiseFailureEvents = true;
+            options.Events.RaiseSuccessEvents = true;
 
-                options.EmitStaticAudienceClaim = true;
-            }).AddConfigurationStore<AmritaTribeConfigurationDbContext>(options =>
-            {
-                options.Setup();
-                options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
-            }).AddOperationalStore<AmritaTribeOperationDbContext>(options =>
-            {
-                options.Setup();
-                options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
-            }).AddAspNetIdentity<AmritaUser>()
-            .AddDeveloperSigningCredential();
+            options.EmitStaticAudienceClaim = true;
+        }).AddConfigurationStore<AmritaTribeConfigurationDbContext>(options =>
+        {
+            options.Setup();
+            options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
+        }).AddOperationalStore<AmritaTribeOperationDbContext>(options =>
+        {
+            options.Setup();
+            options.ConfigureDbContext = dbBuilder => dbBuilder.UseSqlServer(connectionSting);
+        }).AddAspNetIdentity<AmritaUser>();
+        //.AddDeveloperSigningCredential()
+        //.AddProfileService<ProfileService>();
     }
 }

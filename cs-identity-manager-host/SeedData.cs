@@ -66,7 +66,8 @@ public static class SeedData
                     "test-api.read",
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Email,
-                    IdentityServerConstants.StandardScopes.Profile
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "roles"
                 },
                 RequirePkce = true,
                 RequireConsent = true,

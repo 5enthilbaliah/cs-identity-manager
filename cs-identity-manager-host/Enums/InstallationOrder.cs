@@ -5,5 +5,6 @@ public enum InstallationOrder
     Options,
     Authentication,
     Mvc,
-    IdentityServer
+    IdentityServer,
+    Application
 }

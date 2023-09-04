@@ -1,4 +1,4 @@
-﻿namespace Amrita.IdentityManager.Host.Pages.Account.Login;
+﻿namespace Amrita.IdentityManager.Application.Login.Models;
 
 public class LoginViewModel
 {
