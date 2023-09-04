@@ -13,8 +13,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
-
 [SecurityHeaders]
 [AllowAnonymous]
 public class LoginPageModel : PageModel
@@ -75,10 +73,11 @@ public class LoginPageModel : PageModel
         {
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(SignInInfo.ReturnUrl);
-            var user = await _signInManager.UserManager.FindByNameAsync(SignInInfo.UserName);
-            if (user is not null && await _signInManager.CheckPasswordSignInAsync(user, SignInInfo.Password, false)
-                == SignInResult.Success)
+            var signInResult = await _signInManager.PasswordSignInAsync(SignInInfo.UserName, SignInInfo.Password,
+                SignInInfo.RememberLogin, true);
+            if (signInResult.Succeeded)
             {
+                var user = await _signInManager.UserManager.FindByNameAsync(SignInInfo.UserName);
                 await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName,
                     clientId: context?.Client.ClientId));
 
@@ -95,13 +94,10 @@ public class LoginPageModel : PageModel
                 }
 
                 // issue authentication cookie with subject ID and username
-                var issuer = new IdentityServerUser(user.Id)
-                {
-                    DisplayName = user.UserName
-                };
-
-                await HttpContext.SignInAsync(issuer, props);
                 
+                // var issuer = new IdentityServerUser(user.Id) { DisplayName = user.UserName };
+                // await HttpContext.SignInAsync(issuer, props);
+
                 if (context != null)
                 {
                     if (context.IsNativeClient())
@@ -114,24 +110,24 @@ public class LoginPageModel : PageModel
                     // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                     return Redirect(SignInInfo.ReturnUrl);
                 }
-                
+
                 // request for a local page
                 if (Url.IsLocalUrl(SignInInfo.ReturnUrl))
                 {
                     return Redirect(SignInInfo.ReturnUrl);
                 }
-                else if (string.IsNullOrEmpty(SignInInfo.ReturnUrl))
+
+                if (string.IsNullOrEmpty(SignInInfo.ReturnUrl))
                 {
                     return Redirect("~/");
                 }
-                else
-                {
-                    // user might have clicked on a malicious link - should be logged
-                    throw new Exception("invalid return URL");
-                }
+
+                // user might have clicked on a malicious link - should be logged
+                throw new Exception("invalid return URL");
             }
-            
-            await _events.RaiseAsync(new UserLoginFailureEvent(SignInInfo.UserName, "invalid credentials", clientId:context?.Client.ClientId));
+
+            await _events.RaiseAsync(new UserLoginFailureEvent(SignInInfo.UserName, "invalid credentials",
+                clientId: context?.Client.ClientId));
             ModelState.AddModelError("SignInInfo.Password", LoginOptions.InvalidCredentialsErrorMessage);
         }
 
@@ -155,7 +151,7 @@ public class LoginPageModel : PageModel
     private async Task BuildModelAsync(string returnUrl)
     {
         SignInInfo = new SignInModel { ReturnUrl = returnUrl };
-        SignUpInfo = new SignUpModel();
+        SignUpInfo = new SignUpModel { ReturnUrl = returnUrl };
 
         var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
         if (context?.IdP != null && await _schemeProvider.GetSchemeAsync(context.IdP) != null)

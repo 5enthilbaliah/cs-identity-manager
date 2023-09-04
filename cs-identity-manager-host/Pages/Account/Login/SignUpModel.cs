@@ -11,4 +11,5 @@ public class SignUpModel
     [Required(ErrorMessage = "Email required")] public string Email { get; set; } = null!;
     
     [Required(ErrorMessage = "Full name id required")] public string FullName { get; set; } = null!;
+    public string? ReturnUrl { get; set; }
 }

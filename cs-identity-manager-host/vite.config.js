@@ -10,7 +10,9 @@ export default defineConfig(({command}) => {
                 rollupOptions: {
                     input: {
                         main: resolve(__dirname, 'browser/main.js'),
-                        login: resolve(__dirname, 'browser/login.js')
+                        login: resolve(__dirname, 'browser/login.js'),
+                        'signin-redirect': resolve(__dirname, 'browser/signin-redirect.js'),
+                        'signout-redirect': resolve(__dirname, 'browser/signout-redirect.js')
                     },
                     output: {
                         entryFileNames: '[name].js',
