@@ -44,7 +44,7 @@ public class LoginService : ILoginService
 
             // this is meant to short circuit the UI and only trigger the one external IdP
             var view = new LoginViewModel { EnableLocalLogin = local };
-            signIn.UserName = context.LoginHint ?? string.Empty;
+            signIn.EmailId = context.LoginHint ?? string.Empty;
 
             if (!local)
             {
@@ -96,12 +96,12 @@ public class LoginService : ILoginService
     public async Task<LoginResponseModel> SignInAsync(SignInModel signIn, Func<string, bool> localUrlCheck)
     {
         var context = await _interaction.GetAuthorizationContextAsync(signIn.ReturnUrl);
-        var signInResult = await _signInManager.PasswordSignInAsync(signIn.UserName, signIn.Password,
+        var signInResult = await _signInManager.PasswordSignInAsync(signIn.EmailId, signIn.Password,
             signIn.RememberLogin, false);
 
         if (signInResult.Succeeded)
         {
-            var user = await _signInManager.UserManager.FindByNameAsync(signIn.UserName);
+            var user = await _signInManager.UserManager.FindByNameAsync(signIn.EmailId);
             await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName,
                 clientId: context?.Client.ClientId));
 
@@ -161,7 +161,7 @@ public class LoginService : ILoginService
             throw new Exception("invalid return URL");
         }
 
-        await _events.RaiseAsync(new UserLoginFailureEvent(signIn.UserName, "invalid credentials",
+        await _events.RaiseAsync(new UserLoginFailureEvent(signIn.EmailId, "invalid credentials",
             clientId: context?.Client.ClientId));
 
         return new LoginResponseModel { LoginResponseType = LoginResponseType.Failed };

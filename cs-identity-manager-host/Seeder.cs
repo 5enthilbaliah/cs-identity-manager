@@ -91,7 +91,7 @@ public class Seeder
         {
             superAdmin = new AmritaUser()
             {
-                UserName = "super-administrator",
+                UserName = $"super-administrator@{svcSettings.DefaultDomain}",
                 FullName = "Super administrator",
                 Email = $"super-administrator@{svcSettings.DefaultDomain}",
                 IsInternal = true,

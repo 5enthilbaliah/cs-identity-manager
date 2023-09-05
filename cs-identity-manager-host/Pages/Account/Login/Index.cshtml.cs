@@ -55,7 +55,7 @@ public class LoginPageModel : PageModel
 
     public async Task<IActionResult> OnPostSignIn()
     {
-        ModelState.RemoveMany("Email", "FullName", "UserName", "Password");
+        ModelState.RemoveMany("EmailId", "FullName", "Password");
         if (ModelState.IsValid)
         {
             var loginResponse = await _loginService.SignInAsync(SignInInfo, returnUrl => Url.IsLocalUrl(returnUrl));
@@ -86,7 +86,7 @@ public class LoginPageModel : PageModel
 
     public async Task<IActionResult> OnPostSignUp()
     {
-        ModelState.RemoveMany("UserName", "Password");
+        ModelState.RemoveMany("EmailId", "Password");
         if (!ModelState.IsValid)
         {
             return Page();

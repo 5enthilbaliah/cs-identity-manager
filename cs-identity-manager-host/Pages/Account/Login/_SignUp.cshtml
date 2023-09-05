@@ -5,12 +5,12 @@
 
     <div class="field has-text-centered">
         <div class="control has-icons-left">
-            <input class="input" type="text" asp-for="UserName" placeholder="Username">
+            <input class="input" type="email" asp-for="EmailId" placeholder="Email">
             <span class="icon is-small is-left">
-                <i class="fa-solid fa-clipboard-user"></i>
+                <i class="fa-solid fa-envelope"></i>
             </span>
         </div>
-        <span class="has-text-danger" asp-validation-for="UserName"></span>
+        <span class="has-text-danger" asp-validation-for="EmailId"></span>
     </div>
 
     <div class="field has-text-centered">
@@ -21,16 +21,6 @@
             </span>
         </div>
         <span class="has-text-danger" asp-validation-for="FullName"></span>
-    </div>
-
-    <div class="field has-text-centered">
-        <div class="control has-icons-left">
-            <input class="input" type="email" asp-for="Email" placeholder="Email">
-            <span class="icon is-small is-left">
-                <i class="fa-solid fa-envelope"></i>
-            </span>
-        </div>
-        <span class="has-text-danger" asp-validation-for="Email"></span>
     </div>
 
     <div class="field has-text-centered">

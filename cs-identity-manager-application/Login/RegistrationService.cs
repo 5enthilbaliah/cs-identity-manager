@@ -26,30 +26,20 @@ public class RegistrationService : IRegistrationService
     // Not validating for customer role exists - It should exist
     public async Task<RegistrationResponseModel> RegisterCustomerAsync(SignUpModel signUp, Func<string, bool> localUrlCheck)
     {
-        if (await _userManager.FindByNameAsync(signUp.UserName) != null)
+        if (await _userManager.FindByNameAsync(signUp.EmailId) != null)
         {
             return new RegistrationResponseModel
             {
                 LoginResponseType = LoginResponseType.Failed,
                 RedirectUrl = signUp.ReturnUrl,
-                Errors = new Dictionary<string, string> { { "UserName", "User name is already taken" } }
-            };
-        }
-        
-        if (await _userManager.FindByEmailAsync(signUp.Email) != null)
-        {
-            return new RegistrationResponseModel
-            {
-                LoginResponseType = LoginResponseType.Failed,
-                RedirectUrl = signUp.ReturnUrl,
-                Errors = new Dictionary<string, string> { { "Email", "Email is already taken" } }
+                Errors = new Dictionary<string, string> { { "EmailId", "Email is already taken" } }
             };
         }
         
         var customer = new AmritaUser
         {
-            UserName = signUp.UserName,
-            Email = signUp.Email,
+            UserName = signUp.EmailId,
+            Email = signUp.EmailId,
             EmailConfirmed = true,
             FullName = signUp.FullName,
             IsInternal = false,
@@ -64,12 +54,12 @@ public class RegistrationService : IRegistrationService
                 new Claim[]
                 {
                     new Claim(JwtClaimTypes.Name, signUp.FullName), 
-                    new Claim(JwtClaimTypes.Email, signUp.Email),
+                    new Claim(JwtClaimTypes.Email, signUp.EmailId),
                     new Claim(JwtClaimTypes.Picture, "NA"),
                     new Claim(JwtClaimTypes.Role, IdentityManagerConstants.Customer)
                 });
 
-            var loginResult = await _signInManager.PasswordSignInAsync(signUp.UserName, signUp.Password, false, lockoutOnFailure:false);
+            var loginResult = await _signInManager.PasswordSignInAsync(signUp.EmailId, signUp.Password, false, lockoutOnFailure:false);
             if (loginResult.Succeeded)
             {
                 if (localUrlCheck(signUp.ReturnUrl))

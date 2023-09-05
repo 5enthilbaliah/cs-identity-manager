@@ -4,12 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 public class SignUpModel
 {
-    [Required(ErrorMessage = "User name id required")] public string UserName { get; set; } = null!;
+    [Required(ErrorMessage = "Password is required")]
+    public string Password { get; set; } = null!;
 
-    [Required(ErrorMessage = "Password id required")] public string Password { get; set; } = null!;
-    
-    [Required(ErrorMessage = "Email required")] public string Email { get; set; } = null!;
-    
-    [Required(ErrorMessage = "Full name id required")] public string FullName { get; set; } = null!;
+    [Required(ErrorMessage = "Email id is required")]
+    [DataType(DataType.EmailAddress)]
+    public string EmailId { get; set; } = null!;
+
+    [Required(ErrorMessage = "Full name is required")]
+    public string FullName { get; set; } = null!;
+
     public string? ReturnUrl { get; set; }
 }
