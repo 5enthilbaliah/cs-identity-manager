@@ -10,7 +10,7 @@
 }
 
 <div class="login-container @(Model.IsSignInSelected ? "" : "sign-up-mode")">
-    <input type="hidden" asp-for="IsSignInSelected"/>
+    <input type="hidden" name="is-sign-in-selected" asp-for="IsSignInSelected"/>
     <div class="forms-container">
         <div class="signin-signup">
             <partial name="_SignIn" for="SignInInfo"/>
@@ -48,5 +48,5 @@
 </div>
 
 @section Scripts {
-    <script type="text/javascript" src="/login.js"></script>
+    <script type="module" src="/login.js"></script>
 }
