@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\cs-identity-manager-presentation\cs-identity-manager-presentation\cs-identity-manager-presentation.csproj" />
         <ProjectReference Include="..\cs-identity-manager-application\cs-identity-manager-application.csproj" />
         <ProjectReference Include="..\cs-identity-manager-infrastructure\cs-identity-manager-infrastructure.csproj"/>
     </ItemGroup>
@@ -19,6 +20,17 @@
 
     <ItemGroup>
         <Folder Include="wwwroot"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Account\Login\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Account\Login\_SignIn.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Account\Login\_SignUp.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Account\Logout\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Account\Logout\LoggedOut.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Redirect\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Shared\_AnonymousLayout.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
     </ItemGroup>
 
 </Project>
