@@ -1,0 +1,44 @@
+﻿@model Amrita.IdentityManager.Application.Login.Models.SignUpModel
+
+<form asp-page-handler="signUp" method="post" class="sign-up-form">
+    <h2 class="title">Sign up</h2>
+
+    <div class="field has-text-centered">
+        <div class="control has-icons-left">
+            <input class="input" type="email" asp-for="EmailId" placeholder="Email">
+            <span class="icon is-small is-left">
+                <i class="fa-solid fa-envelope"></i>
+            </span>
+        </div>
+        <span class="has-text-danger" asp-validation-for="EmailId"></span>
+    </div>
+
+    <div class="field has-text-centered">
+        <div class="control has-icons-left">
+            <input class="input" type="text" asp-for="FullName" placeholder="Full name">
+            <span class="icon is-small is-left">
+                <i class="fa-solid fa-user"></i>
+            </span>
+        </div>
+        <span class="has-text-danger" asp-validation-for="FullName"></span>
+    </div>
+
+    <div class="field has-text-centered">
+        <div class="control has-icons-left">
+            <input class="input" type="password" asp-for="Password" placeholder="Password" autocomplete="off">
+            <span class="icon is-small is-left">
+                <i class="fa-solid fa-lock"></i>
+            </span>
+        </div>
+        <span class="has-text-danger" asp-validation-for="Password"></span>
+    </div>
+
+    <div class="field">
+        <button class="button is-primary">
+            <span class="icon">
+                <i class="fa-solid fa-circle-arrow-right"></i>
+            </span>
+            <span>REGISTER</span>
+        </button>
+    </div>
+</form>

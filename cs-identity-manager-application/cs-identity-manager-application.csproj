@@ -15,11 +15,14 @@
 
     <ItemGroup>
       <PackageReference Include="Duende.IdentityServer" Version="6.3.3" />
+      <PackageReference Include="UseCaseExecutR" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\cs-identity-manager-domain\cs-identity-manager-domain.csproj" />
+
     </ItemGroup>
+
 
 
 

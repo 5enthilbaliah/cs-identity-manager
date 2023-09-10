@@ -11,6 +11,7 @@
         <ProjectReference Include="..\..\cs-identity-manager-presentation\cs-identity-manager-presentation\cs-identity-manager-presentation.csproj" />
         <ProjectReference Include="..\cs-identity-manager-application\cs-identity-manager-application.csproj" />
         <ProjectReference Include="..\cs-identity-manager-infrastructure\cs-identity-manager-infrastructure.csproj"/>
+        <ProjectReference Include="..\cs-identity-manager-presentation\cs-identity-manager-presentation.csproj" />
     </ItemGroup>
 
     <ItemGroup>

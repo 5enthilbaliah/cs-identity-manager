@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>Amrita.IdentityManager.Presentation</RootNamespace>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Properties\launchSettings.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\cs-identity-manager\cs-identity-manager-application\cs-identity-manager-application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Account\Login\Index.cshtml" />
+      <AdditionalFiles Include="Pages\Account\Login\_SignIn.cshtml" />
+      <AdditionalFiles Include="Pages\Account\Login\_SignUp.cshtml" />
+      <AdditionalFiles Include="Pages\Account\Logout\Index.cshtml" />
+      <AdditionalFiles Include="Pages\Account\Logout\LoggedOut.cshtml" />
+      <AdditionalFiles Include="Pages\Redirect\Index.cshtml" />
+      <AdditionalFiles Include="Pages\Shared\_AnonymousLayout.cshtml" />
+      <AdditionalFiles Include="Pages\Shared\_Layout.cshtml" />
+    </ItemGroup>
+
+</Project>
