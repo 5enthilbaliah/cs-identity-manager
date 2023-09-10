@@ -11,13 +11,13 @@ using Interfaces;
 public class ApplicationInstaller : IServiceInstaller
 {
     public InstallationOrder Order => InstallationOrder.Application;
-    public void Install(IServiceCollection services, IConfiguration configuration, string environment)
+    public void Install(WebApplicationBuilder hostBuilder, IConfiguration configuration, string environment)
     {
-        services.AddUseCaseExecutR(cfg =>
+        hostBuilder.Services.AddUseCaseExecutR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(typeof(ProfileService).Assembly);
         });
         
-        services.AddScoped<IProfileService, ProfileService>();
+        hostBuilder.Services.AddScoped<IProfileService, ProfileService>();
     }
 }

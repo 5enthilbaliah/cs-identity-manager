@@ -4,7 +4,7 @@ using Interfaces;
 
 public static class HostExtensions
 {
-    public static void InstallServices(this IServiceCollection services, IConfiguration configuration,
+    public static void InstallServices(this WebApplicationBuilder hostBuilder, IConfiguration configuration,
         IWebHostEnvironment environment)
     {
         var serviceInstallers = typeof(Program).Assembly.ExportedTypes
@@ -16,7 +16,7 @@ public static class HostExtensions
 
         serviceInstallers.ForEach(installer =>
         {
-            installer.Install(services, configuration, environment.EnvironmentName);
+            installer.Install(hostBuilder, configuration, environment.EnvironmentName);
         });
     }
 

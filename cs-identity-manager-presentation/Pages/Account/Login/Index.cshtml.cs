@@ -17,12 +17,12 @@ using UseCaseExecutR.Interfaces;
 public class LoginPageModel : PageModel
 {
     private readonly IExecutor _executor;
-
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    public LoginPageModel(IExecutor executor)
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private ILogger<LoginPageModel> _logger;
+    
+    public LoginPageModel(IExecutor executor, ILogger<LoginPageModel> logger)
     {
         _executor = executor ?? throw new ArgumentNullException(nameof(executor));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     public LoginViewModel View { get; set; }
@@ -49,6 +49,7 @@ public class LoginPageModel : PageModel
             return RedirectToPage("/ExternalLogin/Challenge", new { scheme = View.ExternalLoginScheme, returnUrl });
         }
 
+        _logger.LogInformation("Testing the log {Test}", "Test");
         return Page();
     }
 

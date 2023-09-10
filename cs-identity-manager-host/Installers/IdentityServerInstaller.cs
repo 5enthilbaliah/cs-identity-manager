@@ -17,18 +17,18 @@ public class IdentityServerInstaller : IServiceInstaller
 {
     public InstallationOrder Order => InstallationOrder.IdentityServer;
 
-    public void Install(IServiceCollection services, IConfiguration configuration, string environment)
+    public void Install(WebApplicationBuilder hostBuilder, IConfiguration configuration, string environment)
     {
         var connectionSting = configuration.GetConnectionString("AmritaTribeDb");
-        services.AddDbContext<AmritaTribeApplicationDbContext>(options =>
+        hostBuilder.Services.AddDbContext<AmritaTribeApplicationDbContext>(options =>
         {
             options.UseSqlServer(connectionSting);
         });
-        services.AddIdentity<AmritaUser, IdentityRole>()
+        hostBuilder.Services.AddIdentity<AmritaUser, IdentityRole>()
             .AddEntityFrameworkStores<AmritaTribeApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-        services.AddIdentityServer(options =>
+        hostBuilder.Services.AddIdentityServer(options =>
         {
             options.Events.RaiseErrorEvents = true;
             options.Events.RaiseInformationEvents = true;

@@ -5,5 +5,5 @@ using Enums;
 public interface IServiceInstaller
 {
     InstallationOrder Order { get; }
-    void Install(IServiceCollection services, IConfiguration configuration, string environment);
+    void Install(WebApplicationBuilder hostBuilder, IConfiguration configuration, string environment);
 }

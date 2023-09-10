@@ -8,8 +8,8 @@ public class AuthenticationInstaller : IServiceInstaller
 {
     public InstallationOrder Order => InstallationOrder.Authentication;
 
-    public void Install(IServiceCollection services, IConfiguration configuration, string environment)
+    public void Install(WebApplicationBuilder hostBuilder, IConfiguration configuration, string environment)
     {
-        services.AddAuthentication();
+        hostBuilder.Services.AddAuthentication();
     }
 }

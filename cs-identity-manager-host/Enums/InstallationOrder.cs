@@ -2,6 +2,7 @@
 
 public enum InstallationOrder
 {
+    Logging,
     Options,
     Authentication,
     Mvc,
