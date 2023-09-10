@@ -5,6 +5,7 @@
         <RootNamespace>Amrita.IdentityManager.Infrastructure</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>Amrita.IdentityManager.Infrastructure</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

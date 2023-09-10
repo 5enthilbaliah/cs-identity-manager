@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>Amrita.IdentityManager.Presentation</RootNamespace>
         <OutputType>Library</OutputType>
+        <AssemblyName>Amrita.IdentityManager.Presentation</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -26,5 +27,6 @@
       <AdditionalFiles Include="Pages\Shared\_AnonymousLayout.cshtml" />
       <AdditionalFiles Include="Pages\Shared\_Layout.cshtml" />
     </ItemGroup>
+
 
 </Project>

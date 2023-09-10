@@ -5,6 +5,7 @@
         <RootNamespace>Amrita.IdentityManager.Domain</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>Amrita.IdentityManager.Domain</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
