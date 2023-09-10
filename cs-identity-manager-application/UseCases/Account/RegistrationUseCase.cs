@@ -6,10 +6,9 @@ using Domain;
 
 using IdentityModel;
 
-using Login;
-using Login.Models;
-
 using Microsoft.AspNetCore.Identity;
+
+using Models;
 
 using UseCaseExecutR.Interfaces;
 

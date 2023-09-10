@@ -7,11 +7,10 @@ using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Stores;
 
-using Login;
-using Login.Models;
-
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+
+using Models;
 
 using UseCaseExecutR.Interfaces;
 

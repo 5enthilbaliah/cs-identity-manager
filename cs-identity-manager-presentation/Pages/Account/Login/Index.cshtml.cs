@@ -1,8 +1,9 @@
 ﻿namespace Amrita.IdentityManager.Presentation.Pages.Account.Login;
 
-using Amrita.IdentityManager.Application.Login;
-using Amrita.IdentityManager.Application.Login.Models;
 using Amrita.IdentityManager.Application.UseCases.Account;
+
+using Application.UseCases.Account.Models;
+
 using Pages;
 
 using Microsoft.AspNetCore.Authorization;

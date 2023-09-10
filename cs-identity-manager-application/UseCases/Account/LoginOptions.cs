@@ -1,4 +1,4 @@
-﻿namespace Amrita.IdentityManager.Application.Login;
+﻿namespace Amrita.IdentityManager.Application.UseCases.Account;
 
 public class LoginOptions
 {

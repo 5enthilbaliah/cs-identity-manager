@@ -1,4 +1,6 @@
-namespace Amrita.IdentityManager.Application.Login.Models;
+namespace Amrita.IdentityManager.Application.UseCases.Account.Models;
+
+using Account;
 
 public class LoginResponseModel
 {
