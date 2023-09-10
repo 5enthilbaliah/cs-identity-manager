@@ -1,14 +1,13 @@
-﻿namespace Amrita.IdentityManager.Host.Pages.Account.Login;
+﻿namespace Amrita.IdentityManager.Presentation.Pages.Account.Login;
 
-using Application.Login;
-using Application.Login.Interfaces;
-using Application.Login.Models;
-using Application.UseCases.Account;
+using Amrita.IdentityManager.Application.Login;
+using Amrita.IdentityManager.Application.Login.Models;
+using Amrita.IdentityManager.Application.UseCases.Account;
+using Pages;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Presentation.Pages;
 
 using UseCaseExecutR.Interfaces;
 
@@ -16,14 +15,12 @@ using UseCaseExecutR.Interfaces;
 [AllowAnonymous]
 public class LoginPageModel : PageModel
 {
-    private readonly IRegistrationService _registrationService;
     private readonly IExecutor _executor;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    public LoginPageModel(IRegistrationService registrationService, IExecutor executor)
+    public LoginPageModel(IExecutor executor)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
-        _registrationService = registrationService ?? throw new ArgumentNullException(nameof(registrationService));
         _executor = executor ?? throw new ArgumentNullException(nameof(executor));
     }
 
